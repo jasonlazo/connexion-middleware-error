@@ -1,0 +1,45 @@
+openapi: 3.0.0
+info:
+  title: API
+  version: 0.0.1
+servers:
+  - url: 'http://localhost:8080/'
+    description: Localhost
+paths:
+  /health/ping:
+    get:
+      summary: Ping the server
+      tags:
+        - health
+      responses:
+        '200':
+          $ref: '#/components/responses/Message'
+      operationId: ping
+      description: Ping to see if the server is up and running
+      x-openapi-router-controller: controllers
+      x-ads-internal: true
+      x-ads-skipauth: true
+components:
+  schemas:
+    Message:
+      title: Message
+      x-stoplight:
+        id: y72n7pjts8np6
+      type: object
+      description: Message
+      additionalProperties: false
+      properties:
+        message:
+          type: string
+          x-stoplight:
+            id: nn6h68zy7nwdp
+  responses:
+    Message:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+x-internal: true
+tags:
+  - name: health
